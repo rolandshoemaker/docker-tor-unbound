@@ -1,0 +1,49 @@
+server:
+        interface: 0.0.0.0
+        port: 9053
+        do-ip4: yes
+        do-ip6: no
+        do-udp: no
+        do-tcp: yes
+        tcp-upstream: yes
+
+        root-hints: /etc/unbound/root.hints
+
+        username: "root"
+        do-daemonize: no
+
+        hide-identity: yes
+        hide-version: yes
+        access-control: 0.0.0.0/0 allow
+        do-not-query-localhost: yes
+
+        verbosity: 1
+        logfile: ""
+        use-syslog: no
+
+        module-config: "validator iterator"
+        auto-trust-anchor-file: "/var/lib/unbound/root.key"
+        harden-dnssec-stripped: yes
+        harden-glue: yes
+        unwanted-reply-threshold: 0
+        val-clean-additional: yes
+
+        cache-max-ttl: 86400
+        cache-min-ttl: 0
+        edns-buffer-size: 4096
+        incoming-num-tcp: 10
+        infra-cache-numhosts: 10000
+        infra-cache-slabs: 4
+        infra-host-ttl: 900
+        jostle-timeout: 200
+        key-cache-slabs: 4
+        msg-cache-size: 4m
+        msg-cache-slabs: 4
+        num-queries-per-thread: 4096
+        num-threads: 1
+        outgoing-num-tcp: 10
+        outgoing-range: 8192
+        prefetch-key: yes
+        prefetch: yes
+        rrset-cache-size: 8m
+        rrset-cache-slabs: 4

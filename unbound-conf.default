@@ -1,15 +1,16 @@
 server:
         interface: 0.0.0.0
+        interface: ::0
         port: 9053
         do-ip4: yes
-        do-ip6: no
+        do-ip6: yes
         do-udp: no
         do-tcp: yes
         tcp-upstream: yes
 
-        root-hints: /etc/unbound/root.hints
-
-        username: "root"
+        username: ""
+        chroot: ""
+        directory: /etc/unbound
         do-daemonize: no
 
         hide-identity: yes
@@ -21,29 +22,34 @@ server:
         logfile: ""
         use-syslog: no
 
-        module-config: "validator iterator"
         auto-trust-anchor-file: "/var/lib/unbound/root.key"
+        root-hints: /etc/unbound/root.hints
+
         harden-dnssec-stripped: yes
         harden-glue: yes
-        unwanted-reply-threshold: 0
+        unwanted-reply-threshold: 10000
         val-clean-additional: yes
+        use-caps-for-id: yes
 
-        cache-max-ttl: 86400
+        cache-max-ttl: 60
         cache-min-ttl: 0
         edns-buffer-size: 4096
-        incoming-num-tcp: 10
         infra-cache-numhosts: 10000
-        infra-cache-slabs: 4
-        infra-host-ttl: 900
-        jostle-timeout: 200
-        key-cache-slabs: 4
-        msg-cache-size: 4m
-        msg-cache-slabs: 4
-        num-queries-per-thread: 4096
-        num-threads: 1
-        outgoing-num-tcp: 10
-        outgoing-range: 8192
-        prefetch-key: yes
-        prefetch: yes
-        rrset-cache-size: 8m
-        rrset-cache-slabs: 4
+
+        num-threads: 4
+        incoming-num-tcp: 32
+        outgoing-num-tcp: 32
+        prefetch: no
+
+        rrset-cache-size: 256m
+        msg-cache-size: 128m
+        so-rcvbuf: 1m
+
+        rrset-cache-slabs: 8
+        msg-cache-slabs: 8
+        infra-cache-slabs: 8
+        key-cache-slabs: 8
+
+        private-address: 192.168.0.0/16
+        private-address: 172.16.0.0/12
+        private-address: 10.0.0.0/8

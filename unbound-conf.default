@@ -1,9 +1,9 @@
 server:
         interface: 0.0.0.0
-        interface: ::0
+        # interface: ::0
         port: 9053
         do-ip4: yes
-        do-ip6: yes
+        do-ip6: no # yes
         do-udp: no
         do-tcp: yes
         tcp-upstream: yes

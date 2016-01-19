@@ -38,9 +38,8 @@ server:
         edns-buffer-size: 4096
         infra-cache-numhosts: 10000
 
-        num-threads: 4
-        incoming-num-tcp: 32
-        outgoing-num-tcp: 32
+        num-threads: 2
+        incoming-num-tcp: 20
         prefetch: no
 
         rrset-cache-size: 256m
@@ -55,3 +54,6 @@ server:
         private-address: 192.168.0.0/16
         private-address: 172.16.0.0/12
         private-address: 10.0.0.0/8
+
+remote-control:
+	control-enable: no
